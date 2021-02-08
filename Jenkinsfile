@@ -32,13 +32,18 @@ stage('Build') {
       }
     }
         stage('Publish'){
-            steps{
-                echo 'Publish'
-                sh 'rm -f ${HOME}/.npmrc'
-                sh 'echo ${REGISTRY_LINK}npm-private/:_authToken=${NEXUSPUSH} > ${HOME}/.npmrc'
-                sh 'cp ./data.json ./dist/'
-                sh 'npm publish ./dist --registry=http:${REGISTRY_LINK}npm-private/'
-            }
+//             steps{
+//                 echo 'Publish'
+//                 sh 'rm -f ${HOME}/.npmrc'
+//                 sh 'echo ${REGISTRY_LINK}npm-private/:_authToken=${NEXUSPUSH} > ${HOME}/.npmrc'
+//                 sh 'cp ./data.json ./dist/'
+//                 sh 'npm publish ./dist --registry=http:${REGISTRY_LINK}npm-private/'
+//             }
+withGradle {
+          sh '''
+            ./gradlew npm_publish
+          '''
+        }
         }
         stage('Deploy'){
             agent {
