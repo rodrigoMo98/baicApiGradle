@@ -17,8 +17,8 @@ pipeline {
             nodeSetup \
             npmInstall \
             npm_run_build \
-            -PregistryUrl=$REGISTRY_LINK \
-            -PauthToken=$NEXUSPUSH
+            -PregistryUrl=${REGISTRY_LINK} \
+            -PauthToken=${NEXUSPUSH}
           '''
         }
       }
@@ -29,7 +29,7 @@ pipeline {
           sh 'cp ./data.json ./dist/'
           sh 'pwd'
           sh '''
-            ./gradlew npm_publish
+            ./gradlew npm_publish ./
           '''
         }
       }
