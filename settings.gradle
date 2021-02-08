@@ -1,2 +1,4 @@
-rootProject.name = 'gradle for js'
+//rootProject.name = 'gradle for js'
+rootProject.name = 'dist'
+
 
