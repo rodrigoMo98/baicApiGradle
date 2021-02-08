@@ -29,7 +29,7 @@ pipeline {
           sh 'cp ./data.json ./dist/'
           sh 'pwd'
           sh '''
-            ./gradlew npm_publish ./dist
+            ./gradlew npm_publish ../dist
           '''
         }
       }
