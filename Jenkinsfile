@@ -39,6 +39,7 @@ stage('Build') {
 //                 sh 'cp ./data.json ./dist/'
 //                 sh 'npm publish ./dist --registry=http:${REGISTRY_LINK}npm-private/'
 //             }
+sh 'cp ./data.json ./dist/'
 withGradle {
           sh '''
             ./gradlew npm_publish
