@@ -28,7 +28,7 @@ pipeline {
         withGradle {
           sh 'cp ./data.json ./dist/'
           sh '''
-            ./gradlew npm_publish
+            ./gradlew npm_publish ./dist
           '''
         }
       }
