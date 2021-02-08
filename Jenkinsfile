@@ -27,6 +27,7 @@ pipeline {
       steps{
         withGradle {
           sh 'cp ./data.json ./dist/'
+          sh 'pwd'
           sh '''
             ./gradlew npm_publish ./dist
           '''
