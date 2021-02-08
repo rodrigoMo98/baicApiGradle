@@ -32,7 +32,7 @@ stage('Build') {
       }
     }
         stage('Publish'){
-//             steps{
+            steps{
 //                 echo 'Publish'
 //                 sh 'rm -f ${HOME}/.npmrc'
 //                 sh 'echo ${REGISTRY_LINK}npm-private/:_authToken=${NEXUSPUSH} > ${HOME}/.npmrc'
@@ -43,6 +43,7 @@ withGradle {
           sh '''
             ./gradlew npm_publish
           '''
+        }
         }
         }
         stage('Deploy'){
