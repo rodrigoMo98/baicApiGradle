@@ -8,14 +8,28 @@ pipeline {
         NEXUSPUSH= credentials('NEXUS_PUSH')
     }
     stages{
-        stage('Build'){
-            steps{
-                echo 'Build'
-                sh 'npm install'
-                sh 'chmod 777 -R node_modules/'
-                sh 'npm run build'
-            }
+//         stage('Build'){
+//             steps{
+//                 echo 'Build'
+//                 sh 'npm install'
+//                 sh 'chmod 777 -R node_modules/'
+//                 sh 'npm run build'
+//             }
+//         }
+stage('Build') {
+      steps {
+        withGradle {
+          sh '''
+            ./gradlew registrySetup \
+                      nodeSetup \
+                      npmInstall \
+                      npm_run_build \
+                      -PregistryUrl=$REGISTRY_LINK \
+                      -PauthToken=$NEXUSPUSH
+          '''
         }
+      }
+    }
         stage('Publish'){
             steps{
                 echo 'Publish'
