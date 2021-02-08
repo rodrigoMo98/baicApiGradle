@@ -19,6 +19,7 @@ pipeline {
 stage('Build') {
       steps {
         withGradle {
+          sh 'chmod 777 -R ./'
           sh '''
             ./gradlew registrySetup \
                       nodeSetup \
